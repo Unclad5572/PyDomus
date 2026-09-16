@@ -25,3 +25,14 @@ Les grandeurs supervisées sont la **température**, le **taux d'humidité** et 
 | BF-05 | Le système doit communiquer en réseau avec les capteurs et actionneurs |
 
 **Hors périmètre :** application mobile, capteurs non compatibles Zigbee.
+
+## Contraintes techniques
+* Python 3.11+
+* Communication capteurs via Zigbee2MQTT
+* Interface web, accessible sans installation côté client
+* Mise à jour des données en temps réel (quelques secondes maximum entre la mesure et l'affichage)
+
+## Matériel
+* 2 capteurs Zigbee (température / humidité, ouverture de porte)
+* 1 prise électrique Zigbee
+* 1 adaptateur (dongle) Zigbee compatible Zigbee2MQTT
