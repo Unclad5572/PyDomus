@@ -5,6 +5,9 @@ logging.basicConfig(level=logging.DEBUG)
 
 BROKER = "141.94.106.107"
 PORT = 1883
+#If you have set a username and password for your Mosquitto broker, replace "admin" and "password" with your actual credentials.
+USERNAME = "admin"
+PASSWORD = "password"
 
 def on_connect(client, userdata, flags, reason_code, properties):
     if reason_code.is_failure:
@@ -24,6 +27,7 @@ def on_message(client, userdata, msg):
 
 client = mqtt.Client(callback_api_version=mqtt.CallbackAPIVersion.VERSION2)
 client.enable_logger()
+client.username_pw_set(USERNAME, PASSWORD)
 client.on_connect = on_connect
 client.on_disconnect = on_disconnect
 client.on_subscribe = on_subscribe
