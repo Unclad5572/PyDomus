@@ -27,6 +27,9 @@ class RegisterForm(forms.ModelForm):
             "email": forms.EmailInput(attrs={"placeholder": "Adresse e-mail"}),
             "username": forms.TextInput(attrs={"placeholder": "Nom d'utilisateur"}),
         }
+        help_texts = {
+        "username": "",
+        }
 
     def clean_password(self):
         password = self.cleaned_data["password"]
