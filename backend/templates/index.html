@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Home | PyDomus{% endblock %}
+
+{% block content %}
+    <main class="page">
+        <section class="welcome" aria-labelledby="welcome-title">
+            <div class="brand">
+                <span class="brand-mark" aria-hidden="true">+</span>
+                <span>PyDomus</span>
+            </div>
+
+            <div class="welcome-copy">
+                <h1 id="welcome-title">Hello {{ user.username }}.</h1>
+            </div>
+
+        </section>
+    </main>
+{% endblock %}
