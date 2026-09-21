@@ -181,6 +181,14 @@ button:hover {
     text-align: center;
 }
 
+.register-link {
+    margin: 16px 0 0;
+    color: var(--muted);
+    font-size: 0.8rem;
+    line-height: 1.5;
+    text-align: center;
+}
+
 @media (max-width: 720px) {
     .page {
         grid-template-columns: 1fr;

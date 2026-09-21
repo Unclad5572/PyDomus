@@ -20,8 +20,8 @@ from account.views import account_view, register_view
 from dashboard.views import dashboard_view
 
 urlpatterns = [
-    path('', dashboard_view),
+    path('', dashboard_view, name=''),
     path('login/', account_view),
-    path('register/', register_view),
+    path('register/', register_view, name='register'),
     path('admin/', admin.site.urls),
 ]
