@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Connexion | PyDomus{% endblock %}
 
 {% block content %}
+    <nav class="navbar-login">
+        <img src="{% static 'images/logo.jpeg' %}" alt="Logo PyDomus" class="navbar-logo">
+        <span class="navbar-title">PyDomus</span>
+    </nav>
     <main class="page">
         <section class="login-area" aria-labelledby="login-title">
             <div class="login-card">
