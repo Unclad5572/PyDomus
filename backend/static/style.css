@@ -30,6 +30,11 @@ h1 {
     line-height: 0.98;
 }
 
+.page {
+    display: grid;
+    min-height: 100vh;
+}
+
 .login-area {
     padding: 40px 24px;
     display: grid;

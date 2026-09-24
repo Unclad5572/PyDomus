@@ -4,33 +4,16 @@
 
 {% block content %}
     <main class="page">
-        <section class="welcome" aria-labelledby="welcome-title">
-            <div class="brand">
-                <span class="brand-mark" aria-hidden="true">+</span>
-                <span>PyDomus</span>
-            </div>
-
-            <div class="welcome-copy">
-                <h1 id="welcome-title">Votre maison, simplement.</h1>
-                <p>Retrouvez l'etat de vos capteurs et gardez le controle de votre maison depuis un seul endroit.</p>
-            </div>
-
-            <p class="system-note">Systeme pret a fonctionner</p>
-        </section>
-
         <section class="login-area" aria-labelledby="login-title">
             <div class="login-card">
-                <p class="eyebrow">Espace personnel</p>
-                <h2 id="login-title">Bienvenue !</h2>
-                <p class="intro">Créez votre compte sur PyDomus, et découvrez la domotique.</p>
-
+                <h2 id="login-title">Bienvenue</h2>
+                <p class="intro">Inscrivez-vous pour acceder a votre tableau de bord.</p>
                 <form method="post">
                     {% csrf_token %}
                     {{ form }}
                     <button type="submit">Créer son compte</button>
                 </form>
                 <p class="register-link">Vous avez deja un compte ? <a href="{% url 'login' %}">Connectez-vous</a></p>
-                <p class="help">Besoin d'aide ? Contactez l'administrateur de votre installation.</p>
             </div>
         </section>
     </main>
