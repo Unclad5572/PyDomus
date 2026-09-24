@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from account.views import account_view, register_view
 urlpatterns = [
-    path('login/', account_view),
+    path('login/', account_view, name='login'),
     path('register/', register_view, name='register'),
     path('admin/', admin.site.urls),
 ]
