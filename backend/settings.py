@@ -40,8 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'account',
-    'dashboard',
-
 ]
 
 LOGIN_URL = "/login/"
