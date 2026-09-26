@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Historique - PyDomus</title>
+
+    <!-- Bibliothèque utilisée uniquement pour dessiner les graphiques -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: #222;
+        }
+
+        /* Barre du haut */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 40px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        /* Nom PyDomus */
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        /* Onglets */
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #555;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            color: #000;
+        }
+
+        /* Contenu */
+        main {
+            padding: 40px;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        /* Rectangle contenant chaque graphique */
+        .graphique {
+            border: 1px solid #dddddd;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            background-color: white;
+        }
+
+        .graphique h2 {
+            font-size: 18px;
+            margin-top: 0;
+        }
+
+        .periode {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        /* Taille du graphique */
+        .zone-graphique {
+            position: relative;
+            height: 300px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo">
+            PyDomus
+        </div>
+
+        <nav>
+            <a href="/">Accueil</a>
+            <a href="/historique/">Historique</a>
+            <a href="#">Alertes</a>
+            <a href="#">Actionneurs</a>
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <h1>Historique</h1>
+
+        <p class="description">
+            Évolution des données des capteurs sur les 30 derniers jours.
+        </p>
+
+
+        <!-- ========================= -->
+        <!-- GRAPHIQUE TEMPERATURE -->
+        <!-- ========================= -->
+
+        <div class="graphique">
+
+            <h2>🌡️ Température</h2>
+
+            <p class="periode">
+                30 derniers jours
+            </p>
+
+            <div class="zone-graphique">
+                <canvas id="graphiqueTemperature"></canvas>
+            </div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- GRAPHIQUE HUMIDITE -->
+        <!-- ========================= -->
+
+        <div class="graphique">
+
+            <h2>💧 Humidité</h2>
+
+            <p class="periode">
+                30 derniers jours
+            </p>
+
+            <div class="zone-graphique">
+                <canvas id="graphiqueHumidite"></canvas>
+            </div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- GRAPHIQUE PORTE -->
+        <!-- ========================= -->
+
+        <div class="graphique">
+
+            <h2>🚪 État de la porte</h2>
+
+            <p class="periode">
+                30 derniers jours
+            </p>
+
+            <div class="zone-graphique">
+                <canvas id="graphiquePorte"></canvas>
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+        /* =========================
+           DONNÉES DES 30 JOURS
+           ========================= */
+
+        const jours = [
+            "20 août", "21 août", "22 août", "23 août", "24 août",
+            "25 août", "26 août", "27 août", "28 août", "29 août",
+            "30 août", "31 août", "1 sept.", "2 sept.", "3 sept.",
+            "4 sept.", "5 sept.", "6 sept.", "7 sept.", "8 sept.",
+            "9 sept.", "10 sept.", "11 sept.", "12 sept.", "13 sept.",
+            "14 sept.", "15 sept.", "16 sept.", "17 sept.", "18 sept."
+        ];
+
+
+        /* =========================
+           TEMPERATURE
+           ========================= */
+
+        const temperatures = [
+            21.2, 21.5, 21.8, 22.1, 22.4,
+            21.9, 21.7, 22.3, 22.8, 22.5,
+            22.7, 23.1, 22.6, 22.2, 22.1,
+            21.8, 22.4, 22.8, 23.2, 22.9,
+            22.5, 22.3, 21.9, 22.1, 22.6,
+            23.0, 22.7, 22.4, 21.9, 22.0
+        ];
+
+
+        new Chart(document.getElementById("graphiqueTemperature"), {
+
+            type: "line",
+
+            data: {
+                labels: jours,
+
+                datasets: [{
+                    label: "Température (°C)",
+                    data: temperatures,
+                    borderWidth: 2,
+                    tension: 0.3,
+                    fill: false
+                }]
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                scales: {
+
+                    x: {
+                        title: {
+                            display: true,
+                            text: "Temps"
+                        }
+                    },
+
+                    y: {
+                        title: {
+                            display: true,
+                            text: "Température (°C)"
+                        }
+                    }
+
+                }
+
+            }
+
+        });
+
+
+        /* =========================
+           HUMIDITE
+           ========================= */
+
+        const humidites = [
+            48, 49, 51, 50, 52,
+            47, 46, 48, 50, 51,
+            49, 53, 52, 50, 48,
+            47, 49, 51, 54, 52,
+            50, 48, 47, 49, 51,
+            53, 52, 50, 48, 49
+        ];
+
+
+        new Chart(document.getElementById("graphiqueHumidite"), {
+
+            type: "line",
+
+            data: {
+                labels: jours,
+
+                datasets: [{
+                    label: "Humidité (%)",
+                    data: humidites,
+                    borderWidth: 2,
+                    tension: 0.3,
+                    fill: false
+                }]
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                scales: {
+
+                    x: {
+                        title: {
+                            display: true,
+                            text: "Temps"
+                        }
+                    },
+
+                    y: {
+                        title: {
+                            display: true,
+                            text: "Humidité (%)"
+                        },
+
+                        min: 0,
+                        max: 100
+                    }
+
+                }
+
+            }
+
+        });
+
+
+        /* =========================
+           PORTE
+           ========================= */
+
+        const porte = [
+            0, 0, 1, 0, 0,
+            1, 0, 0, 0, 1,
+            0, 0, 1, 0, 0,
+            0, 1, 0, 0, 0,
+            1, 0, 0, 1, 0,
+            0, 0, 1, 0, 0
+        ];
+
+
+        new Chart(document.getElementById("graphiquePorte"), {
+
+            type: "line",
+
+            data: {
+                labels: jours,
+
+                datasets: [{
+                    label: "État de la porte",
+                    data: porte,
+                    borderWidth: 2,
+                    stepped: true,
+                    fill: false
+                }]
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                scales: {
+
+                    x: {
+                        title: {
+                            display: true,
+                            text: "Temps"
+                        }
+                    },
+
+                    y: {
+                        title: {
+                            display: true,
+                            text: "État"
+                        },
+
+                        min: 0,
+                        max: 1,
+
+                        ticks: {
+                            stepSize: 1,
+
+                            callback: function(value) {
+
+                                if (value === 0) {
+                                    return "Fermée";
+                                }
+
+                                if (value === 1) {
+                                    return "Ouverte";
+                                }
+
+                                return value;
+                            }
+                        }
+                    }
+
+                }
+
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>
