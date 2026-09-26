@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Historique - PyDomus</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: #222;
+        }
+
+        /* Barre du haut */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 40px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        /* Nom PyDomus */
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        /* Onglets */
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #555;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            color: #000;
+        }
+
+        /* Contenu */
+        main {
+            padding: 40px;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        /* Rectangle contenant chaque graphique */
+        .graphique {
+            border: 1px solid #dddddd;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            background-color: white;
+        }
+
+        .graphique h2 {
+            font-size: 18px;
+            margin-top: 0;
+        }
+
+        .periode {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo">
+            PyDomus
+        </div>
+
+        <nav>
+            <a href="/">Accueil</a>
+            <a href="/historique/">Historique</a>
+            <a href="#">Alertes</a>
+            <a href="#">Actionneurs</a>
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <h1>Historique</h1>
+
+        <p class="description">
+            Évolution des données des capteurs sur les 30 derniers jours.
+        </p>
+
+
+        <!-- ========================= -->
+        <!-- GRAPHIQUE TEMPERATURE -->
+        <!-- ========================= -->
+
+        <div class="graphique">
+
+            <h2>🌡️ Température</h2>
+
+            <p class="periode">
+                30 derniers jours
+            </p>
+
+            <div class="zone-valeurs">
+                <div class="valeur">Actuelle : <strong>22.0 °C</strong></div>
+                <div class="valeur">Min : <strong>21.2 °C</strong></div>
+                <div class="valeur">Max : <strong>23.2 °C</strong></div>
+            </div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- GRAPHIQUE HUMIDITE -->
+        <!-- ========================= -->
+
+        <div class="graphique">
+
+            <h2>💧 Humidité</h2>
+
+            <p class="periode">
+                30 derniers jours
+            </p>
+
+            <div class="zone-valeurs">
+                <div class="valeur">Actuelle : <strong>49 %</strong></div>
+                <div class="valeur">Min : <strong>46 %</strong></div>
+                <div class="valeur">Max : <strong>54 %</strong></div>
+            </div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- GRAPHIQUE PORTE -->
+        <!-- ========================= -->
+
+        <div class="graphique">
+
+            <h2>🚪 État de la porte</h2>
+
+            <p class="periode">
+                30 derniers jours
+            </p>
+
+            <div class="zone-valeurs">
+                <div class="valeur">État actuel : <strong>Fermée</strong></div>
+                <div class="valeur">Ouvertures : <strong>8</strong></div>
+            </div>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>
