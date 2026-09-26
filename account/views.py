@@ -71,7 +71,7 @@ def account_view(request):
             if user is not None:
                 login(request, user)
                 return redirect('login-mfa')  # Redirect to the MFA page after successful login
-            form.add_error('authentication', 'Adresse e-mail ou mot de passe invalide')
+            form.add_error(None, 'Adresse e-mail ou mot de passe invalide')
     else:
         form = LoginForm()
     return render(request, 'login.html', context={'form': form})
