@@ -14,7 +14,22 @@
                 <p class="intro">Inscrivez-vous pour acceder a votre tableau de bord.</p>
                 <form method="post">
                     {% csrf_token %}
-                    {{ form }}
+                    {% for field in form %}
+                        {{ field.label_tag }}
+                        {{ field }}
+                    {% endfor %}
+                    {% if form.errors %}
+                        <div class="error-message">
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                     <button type="submit">Créer son compte</button>
                 </form>
                 <p class="register-link">Vous avez deja un compte ? <a href="{% url 'login' %}">Connectez-vous</a></p>

@@ -6,6 +6,9 @@ class LoginForm(forms.Form):
     email = forms.EmailField(label='Adresse e-mail', max_length=100, widget=forms.EmailInput(attrs={'placeholder': 'Adresse e-mail'}))
     password = forms.CharField(label='Mot de passe', widget=forms.PasswordInput(attrs={'placeholder': 'Mot de passe'}))
 
+class MfaForm(forms.Form):
+    totp_code = forms.CharField(label='Code TOTP', max_length=6,min_length=6, widget=forms.TextInput(attrs={'placeholder': 'Code TOTP'}))
+
 class RegisterForm(forms.ModelForm):
     password = forms.CharField(
         label="Mot de passe",
