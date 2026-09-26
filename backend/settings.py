@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_totp',
     'account',
 ]
 
@@ -82,6 +83,9 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
 
 load_dotenv(BASE_DIR / ".env")
+
+TOTP_ENCRYPTION_KEY = os.environ["TOTP_SECRET_KEY"]
+TOTP_ISSUER = "PyDomus"
 
 DATABASES = {
     "default": {
