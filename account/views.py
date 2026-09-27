@@ -53,7 +53,7 @@ def mfa_view(request):
 
 
 
-def account_view(request):
+def login_view(request):
     if request.session.get('mfa_verified', False): # If the user has already verified MFA, redirect them to the home page
         return redirect('/')
     if request.method == 'POST':
