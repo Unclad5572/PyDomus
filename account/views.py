@@ -7,12 +7,6 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 import base64
 
-def home_view(request):
-    if request.session.get('mfa_verified', False): # If the user has already verified MFA, redirect them to the home page
-        return render(request, 'index.html')
-    else:
-        return redirect('login')
-
 @login_required
 def mfa_view(request):
     user = request.user
@@ -55,7 +49,7 @@ def mfa_view(request):
             qr_base64 = base64.b64encode(svg_qr_code.encode('utf-8')).decode('ascii')
             request.session['pending_qr'] = qr_base64
     
-    return render(request, 'login_mfa.html', {'form': form, 'qr':qr_base64, 'mfa_enabled': mfa_enabled})
+    return render(request, 'account/login_mfa.html', {'form': form, 'qr':qr_base64, 'mfa_enabled': mfa_enabled})
 
 
 
@@ -74,7 +68,7 @@ def account_view(request):
             form.add_error(None, 'Adresse e-mail ou mot de passe invalide')
     else:
         form = LoginForm()
-    return render(request, 'login.html', context={'form': form})
+    return render(request, 'account/login.html', context={'form': form})
     
 def register_view(request):
     if request.method == 'POST':
@@ -84,4 +78,4 @@ def register_view(request):
             return redirect('/login')
     else:
         form = RegisterForm()
-    return render(request, 'register.html', context={'form': form})
+    return render(request, 'account/register.html', context={'form': form})

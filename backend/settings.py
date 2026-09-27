@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_totp',
     'account',
+    'dashboard',
 ]
 
 LOGIN_URL = "/login/"

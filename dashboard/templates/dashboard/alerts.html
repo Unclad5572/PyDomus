@@ -1,0 +1,79 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block title %}Alertes | PyDomus{% endblock %}
+
+{% block content %}
+    <main>
+
+        <h1>Alertes</h1>
+
+        <p class="description">
+            Historique des anomalies détectées par les capteurs.
+        </p>
+
+
+        <!-- Alerte température -->
+
+        <div class="alerte">
+
+            <h2>⚠️ Température élevée</h2>
+
+            <p>
+                Température moyenne de la maison : <strong>25,1 °C</strong>
+            </p>
+
+            <p>
+                Seuil maximum : 24 °C
+            </p>
+
+            <p class="date">
+                18 septembre 2026 à 10:42
+            </p>
+
+        </div>
+
+
+        <!-- Alerte humidité -->
+
+        <div class="alerte">
+
+            <h2>⚠️ Humidité faible</h2>
+
+            <p>
+                Humidité moyenne de la maison : <strong>27 %</strong>
+            </p>
+
+            <p>
+                Seuil minimum : 30 %
+            </p>
+
+            <p class="date">
+                17 septembre 2026 à 18:20
+            </p>
+
+        </div>
+
+
+        <!-- Alerte résolue -->
+
+        <div class="alerte">
+
+            <h2>✓ Température revenue à la normale</h2>
+
+            <p>
+                Température moyenne : <strong>21,9 °C</strong>
+            </p>
+
+            <p class="resolue">
+                Alerte résolue
+            </p>
+
+            <p class="date">
+                17 septembre 2026 à 18:48
+            </p>
+
+        </div>
+
+
+    </main>
+{% endblock %}
