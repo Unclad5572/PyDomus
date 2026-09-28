@@ -74,7 +74,7 @@ def register_view(request):
         form = RegisterForm(request.POST)
         if form.is_valid(): 
             form.save() # Save the new user to the database
-            return redirect('/login')
+            return redirect('login')
     else:
         form = RegisterForm()
     return render(request, 'account/register.html', context={'form': form})
