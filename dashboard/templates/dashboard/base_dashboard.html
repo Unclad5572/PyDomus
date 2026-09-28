@@ -12,9 +12,9 @@
         <img src="{% static 'images/logo.jpeg' %}" alt="Logo PyDomus" class="navbar-logo">
         <span class="navbar-title">PyDomus</span>
         <a href="/">Accueil</a>
-        <a href="/history">Historique</a>
-        <a href="/alerts/">Alertes</a>
-        <a href="/account/">Compte</a>
+        <a href="{% url 'history' %}">Historique</a>
+        <a href="{% url 'alerts' %}">Alertes</a>
+        <a href="{% url 'account' %}">Compte</a>
     </nav>
     {% block content %}{% endblock %}
 </body>
