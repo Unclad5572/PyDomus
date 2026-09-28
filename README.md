@@ -36,3 +36,36 @@ Les grandeurs supervisées sont la **température**, le **taux d'humidité** et 
 * 2 capteurs Zigbee (température / humidité, ouverture de porte)
 * 1 prise électrique Zigbee
 * 1 adaptateur (dongle) Zigbee compatible Zigbee2MQTT
+
+## Installation depuis les sources
+
+### 1. Cloner le dépôt
+```bash
+git clone https://github.com/Unclad5572/PyDomus.git
+cd PyDomus
+```
+
+### 2. Créer l'environnement virtuel et installer les dépendances
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+### 3. Configurer les variables d'environnement
+```bash
+cp .env.example .env
+```
+Modifiez ce que vous souhaitez dans le .env
+
+### 4. Démarrer la base de données
+```bash
+podman compose up -d
+```
+
+### 5. Appliquer les migrations et lancer le serveur
+```bash
+python3 manage.py migrate
+python3 manage.py runserver 0.0.0.0:8000
+```
