@@ -25,7 +25,7 @@ urlpatterns = [
     path('login-mfa/', mfa_view, name='login-mfa'),
     path('register/', register_view, name='register'),
     path('admin/', admin.site.urls),
-    path('history/', alerts_view, name='history'),
-    path('alerts/',history_view, name='alerts'),
+    path('history/', history_view, name='history'),
+    path('alerts/', alerts_view, name='alerts'),
     path('account/', account_view, name='account'),
 ]
