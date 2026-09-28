@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path
 from account.views import login_view, register_view, mfa_view
 from dashboard.views import home_view, alerts_view, history_view, account_view
 

@@ -1,5 +1,4 @@
 from django.shortcuts import redirect, render
-from django.http import HttpResponse
 from .forms import LoginForm, RegisterForm, MfaForm
 from django_totp.auth import is_totp_enabled
 from django_totp.totp import verify_totp_code, create_totp_setup, confirm_totp_setup
