@@ -1,0 +1,55 @@
+:root {
+    --navy: #111f46;
+    --navy-soft: #1d315f;
+    --cyan: #20b9dc;
+    --cyan-dark: #079bc2;
+    --sky: #dff7fc;
+    --mist: #f4fbfd;
+    --white: #ffffff;
+    --muted: #68758f;
+    --line: #d7e7ef;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.navbar-login {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 24px;
+}
+
+.navbar-logo {
+    height: 50px;
+    width: auto;
+}
+
+.navbar-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--navy);
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: var(--navy);
+    background: var(--mist);
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    max-width: 430px;
+    margin: 0 0 20px;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 0.98;
+}
+
+h2 {
+    margin: 0 0 10px;
+    font-size: 2.35rem;
+}
