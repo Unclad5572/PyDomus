@@ -1,8 +1,10 @@
 {% extends 'dashboard/base_dashboard.html' %}
+{% load i18n %}
 
 {% block title %}Accueil | PyDomus{% endblock %}
 
 {% block content %}
+{% language 'fr' %}
     <main>
 
         <h1>Tableau de bord</h1>
@@ -22,20 +24,30 @@
                 <h2>🌡️ Température</h2>
 
                 <p class="valeur">
-                    21,8 °C
+                    {% if temperature %}{{ temperature.value|floatformat:1 }} °C{% else %}—{% endif %}
                 </p>
 
                 <p class="lieu">
                     Moyenne de la maison
                 </p>
 
-                <p class="normal">
-                    ✓ Température normale
-                </p>
+                {% if not temperature %}
+                    <p class="seuil">Aucune donnée reçue</p>
+                {% elif temperature.status == 'normal' %}
+                    <p class="normal">✓ Température normale</p>
+                {% elif temperature.status == 'low' %}
+                    <p class="alerte">⚠️ Température trop basse</p>
+                {% else %}
+                    <p class="alerte">⚠️ Température trop élevée</p>
+                {% endif %}
 
                 <p class="seuil">
-                    Seuil d'alerte : 18 °C à 24 °C
+                    Seuil d'alerte : {{ thresholds.temperature.0 }} °C à {{ thresholds.temperature.1 }} °C
                 </p>
+
+                {% if temperature %}
+                    <p class="seuil">Mis à jour il y a {{ temperature.received_at|timesince }}</p>
+                {% endif %}
 
             </div>
 
@@ -47,20 +59,30 @@
                 <h2>💧 Humidité</h2>
 
                 <p class="valeur">
-                    48 %
+                    {% if humidity %}{{ humidity.value|floatformat:0 }} %{% else %}—{% endif %}
                 </p>
 
                 <p class="lieu">
                     Moyenne de la maison
                 </p>
 
-                <p class="normal">
-                    ✓ Humidité normale
-                </p>
+                {% if not humidity %}
+                    <p class="seuil">Aucune donnée reçue</p>
+                {% elif humidity.status == 'normal' %}
+                    <p class="normal">✓ Humidité normale</p>
+                {% elif humidity.status == 'low' %}
+                    <p class="alerte">⚠️ Humidité trop faible</p>
+                {% else %}
+                    <p class="alerte">⚠️ Humidité trop élevée</p>
+                {% endif %}
 
                 <p class="seuil">
-                    Seuil d'alerte : 30 % à 60 %
+                    Seuil d'alerte : {{ thresholds.humidity.0 }} % à {{ thresholds.humidity.1 }} %
                 </p>
+
+                {% if humidity %}
+                    <p class="seuil">Mis à jour il y a {{ humidity.received_at|timesince }}</p>
+                {% endif %}
 
             </div>
 
@@ -72,16 +94,19 @@
                 <h2>🚪 Porte</h2>
 
                 <p class="valeur">
-                    Ouverte
+                    {% if door is None %}—{% elif door.value %}Fermée{% else %}Ouverte{% endif %}
                 </p>
 
                 <p class="lieu">
                     Porte d'entrée
                 </p>
 
-                <p>
-                    État actuel de la porte
-                </p>
+                {% if door is None %}
+                    <p class="seuil">Aucune donnée reçue</p>
+                {% else %}
+                    <p>État actuel de la porte</p>
+                    <p class="seuil">Mis à jour il y a {{ door.received_at|timesince }}</p>
+                {% endif %}
 
             </div>
 
@@ -89,4 +114,5 @@
         </div>
 
     </main>
+{% endlanguage %}
 {% endblock %}
