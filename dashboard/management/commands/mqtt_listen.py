@@ -1,3 +1,4 @@
+import json
 import os
 
 import paho.mqtt.client as mqtt
@@ -48,11 +49,22 @@ class Command(BaseCommand):
         self.stderr.write(f"Déconnecté : {reason_code}")
 
     def on_message(self, client, userdata, msg):
-        value = msg.payload.decode(errors='replace')[:255]
+        # Zigbee2MQTT internal topics (logs, health, device list...), not sensor data
+        if '/bridge/' in msg.topic or msg.topic.endswith('/availability'):
+            return
+
+        raw = msg.payload.decode(errors='replace')
         try:
-            SensorReading.objects.create(topic=msg.topic, value=value)
+            data = json.loads(raw)
+        except json.JSONDecodeError:
+            data = None
+        if not isinstance(data, dict):
+            data = {'value': raw}
+
+        try:
+            SensorReading.objects.create(topic=msg.topic, data=data)
         except Exception as exc:
             # A DB error must not kill the listener
             self.stderr.write(f"Erreur d'enregistrement [{msg.topic}] : {exc}")
             return
-        self.stdout.write(f"[{msg.topic}] {value}")
+        self.stdout.write(f"[{msg.topic}] {data}")
