@@ -1,10 +1,17 @@
 import logging
 import paho.mqtt.client as mqtt
+import os
+from pathlib import Path
+from dotenv import load_dotenv
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv(BASE_DIR / ".env")
 
 logging.basicConfig(level=logging.DEBUG)
 
 
-BROKER = os.getenv('MQTT_BROKER')
+MQTT_BROKER = os.getenv('MQTT_BROKER')
 MQTT_PORT = int(os.getenv('MQTT_PORT'))
 MQTT_USERNAME = os.getenv('MQTT_USERNAME')
 MQTT_PASSWORD = os.getenv('MQTT_PASSWORD')
@@ -27,11 +34,11 @@ def on_message(client, userdata, msg):
 
 client = mqtt.Client(callback_api_version=mqtt.CallbackAPIVersion.VERSION2)
 client.enable_logger()
-client.username_pw_set(USERNAME, PASSWORD)
+client.username_pw_set(MQTT_USERNAME, MQTT_PASSWORD)
 client.on_connect = on_connect
 client.on_disconnect = on_disconnect
 client.on_subscribe = on_subscribe
 client.on_message = on_message
 
-client.connect(BROKER, PORT, keepalive=60)
+client.connect(MQTT_BROKER, MQTT_PORT, keepalive=60)
 client.loop_forever()
