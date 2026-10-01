@@ -1,0 +1,92 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block title %}Accueil | PyDomus{% endblock %}
+
+{% block content %}
+    <main>
+
+        <h1>Tableau de bord</h1>
+
+        <p class="description">
+            État actuel des équipements de la maison
+        </p>
+
+
+        <div class="cartes">
+
+
+            <!-- TEMPERATURE -->
+
+            <div class="carte">
+
+                <h2>🌡️ Température</h2>
+
+                <p class="valeur">
+                    21,8 °C
+                </p>
+
+                <p class="lieu">
+                    Moyenne de la maison
+                </p>
+
+                <p class="normal">
+                    ✓ Température normale
+                </p>
+
+                <p class="seuil">
+                    Seuil d'alerte : 18 °C à 24 °C
+                </p>
+
+            </div>
+
+
+            <!-- HUMIDITE -->
+
+            <div class="carte">
+
+                <h2>💧 Humidité</h2>
+
+                <p class="valeur">
+                    48 %
+                </p>
+
+                <p class="lieu">
+                    Moyenne de la maison
+                </p>
+
+                <p class="normal">
+                    ✓ Humidité normale
+                </p>
+
+                <p class="seuil">
+                    Seuil d'alerte : 30 % à 60 %
+                </p>
+
+            </div>
+
+
+            <!-- PORTE -->
+
+            <div class="carte">
+
+                <h2>🚪 Porte</h2>
+
+                <p class="valeur">
+                    Ouverte
+                </p>
+
+                <p class="lieu">
+                    Porte d'entrée
+                </p>
+
+                <p>
+                    État actuel de la porte
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </main>
+{% endblock %}

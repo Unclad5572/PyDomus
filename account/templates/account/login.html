@@ -1,0 +1,25 @@
+{% extends 'account/base_account.html' %}
+
+{% block title %}Connexion | PyDomus{% endblock %}
+
+{% block content %}
+    <main class="page">
+        <section class="login-area" aria-labelledby="login-title">
+            <div class="login-card">
+                <h2 id="login-title">Bienvenue</h2>
+                <p class="intro">Connectez-vous pour acceder a votre tableau de bord.</p>
+
+                <form method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        {{ field.label_tag }}
+                        {{ field }}
+                    {% endfor %}
+                    {% include 'account/_form_errors.html' %}
+                    <button type="submit">Se connecter</button>
+                </form>
+                <p class="register-link">Vous n'avez pas de compte ? <a href="{% url 'register' %}">Inscrivez-vous</a></p>
+            </div>
+        </section>
+    </main>
+{% endblock %}

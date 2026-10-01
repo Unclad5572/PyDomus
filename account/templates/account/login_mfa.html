@@ -1,0 +1,45 @@
+{% extends 'account/base_account.html' %}
+
+{% block title %}MFA | PyDomus{% endblock %}
+{% block content %}
+    <main class="page">
+        <section class="login-area" aria-labelledby="login-title">
+            <div class="login-card">
+                <h2 id="login-title">Authentification à deux facteurs</h2>
+
+                {% if not mfa_enabled %}
+                    <div class="qr-container">
+                        <p>Scannez ce QR code avec une application TOTP (Google Authenticator par ex):</p>
+                        <div class="qr-code">
+                           <img src="data:image/svg+xml;base64,{{ qr }}" alt="QR Code TOTP" width="200" height="200">
+                            <form method="post">
+                            {% csrf_token %}
+                            {{ form.totp_code }}
+                            {% if form.totp_code.errors %}
+                                <div class="error-message">
+                                    {{ form.totp_code.errors.0 }}
+                                </div>
+                            {% endif %}
+                            <input type="hidden" name="action" value="confirm-setup">
+                            <button type="submit">Vérifier</button>
+                            </form>
+                        </div>
+                    </div>
+                {% else %}
+                <p>Entrez le code affiché sur votre application :</p>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.totp_code }}
+                        {% if form.totp_code.errors %}
+                            <div class="error-message">
+                                {{ form.totp_code.errors.0 }}
+                            </div>
+                        {% endif %}
+                    <input type="hidden" name="action" value="verify-totp">
+                    <button type="submit">Vérifier</button>
+                </form>
+                {% endif %}
+            </div>
+        </section>
+    </main>
+{% endblock %}

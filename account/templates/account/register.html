@@ -1,0 +1,23 @@
+{% extends 'account/base_account.html' %}
+{% block title %}Compte | PyDomus{% endblock %}
+
+{% block content %}
+    <main class="page">
+        <section class="login-area" aria-labelledby="login-title">
+            <div class="login-card">
+                <h2 id="login-title">Bienvenue</h2>
+                <p class="intro">Inscrivez-vous pour acceder a votre tableau de bord.</p>
+                <form method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        {{ field.label_tag }}
+                        {{ field }}
+                    {% endfor %}
+                    {% include 'account/_form_errors.html' %}
+                    <button type="submit">Créer son compte</button>
+                </form>
+                <p class="register-link">Vous avez deja un compte ? <a href="{% url 'login' %}">Connectez-vous</a></p>
+            </div>
+        </section>
+    </main>
+{% endblock %}

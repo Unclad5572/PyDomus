@@ -1,0 +1,41 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block title %}Historique | PyDomus{% endblock %}
+
+{% block content %}
+    <main>
+        <h1>Historique</h1>
+        <p class="description">
+            Évolution des données des capteurs sur les 30 derniers jours.
+        </p>
+
+        <div class="graphique">
+            <h2>🌡️ Température</h2>
+            <p class="periode">30 derniers jours</p>
+            <div class="zone-valeurs">
+                <div class="valeur">Actuelle : <strong>22.0 °C</strong></div>
+                <div class="valeur">Min : <strong>21.2 °C</strong></div>
+                <div class="valeur">Max : <strong>23.2 °C</strong></div>
+            </div>
+        </div>
+
+        <div class="graphique">
+            <h2>💧 Humidité</h2>
+            <p class="periode">30 derniers jours</p>
+            <div class="zone-valeurs">
+                <div class="valeur">Actuelle : <strong>49 %</strong></div>
+                <div class="valeur">Min : <strong>46 %</strong></div>
+                <div class="valeur">Max : <strong>54 %</strong></div>
+            </div>
+        </div>
+
+        <div class="graphique">
+            <h2>🚪 État de la porte</h2>
+            <p class="periode">30 derniers jours</p>
+            <div class="zone-valeurs">
+                <div class="valeur">État actuel : <strong>Fermée</strong></div>
+                <div class="valeur">Ouvertures : <strong>8</strong></div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
